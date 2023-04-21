@@ -3,6 +3,7 @@ package app
 import (
 	"database/sql"
 	"fmt"
+	"log"
 	"os"
 
 	"github.com/Ferlyapiang/todolist-be-api/helper"
@@ -12,9 +13,9 @@ import (
 
 func Init() *sql.DB {
 
-	err := godotenv.Load()
+	err := godotenv.Load(".env")
 	if err != nil {
-		panic("Can't load configuration!")
+		log.Fatalf("Some error occured. Err: %s", err)
 	}
 
 	MYSQL_HOST := os.Getenv("MYSQL_HOST")
